@@ -85,7 +85,12 @@ define(function (require, exports, module) {
                         $loader.css("top", 70);
                     }
                     $loader.show();
-                    var formData = {/*keywords: keywords, */skip: self.currentPhoto, limit: self.limit, time: $("#photo-flow").attr("ontimeupdate")};
+                    var formData = {
+                        // keywords: keywords,
+                        skip: self.currentPhoto,
+                        limit: self.limit,
+                        time: $("#photo-flow").attr("ontimeupdate")
+                    };
                     if(isScrollSearch){
                         formData.q = $(".search-query").val();
                     }

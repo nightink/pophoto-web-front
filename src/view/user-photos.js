@@ -13,6 +13,7 @@ define(function (require, exports, module) {
     var observer = require('observer');
     var PhotoCollection = require('../model/photo-collection');
     var PhotoModel = require('../model/photo-model');
+    var timeFormat = require('../util/time-format');
 
     require("../util/cookie");
 
@@ -40,10 +41,10 @@ define(function (require, exports, module) {
         },
 
         valueSet: function(e) {
-            var $dom = $(e.target)
-                , str = $.trim($dom.val())
-                , name = $dom.attr('name')
-                , opt = {};
+            var $dom = $(e.target);
+            var str = $.trim($dom.val());
+            var name = $dom.attr('name');
+            var opt = {};
             opt[name] = str;
             this.photoModel.set(opt);
         },
@@ -73,6 +74,8 @@ define(function (require, exports, module) {
         },
 
         render: function() {
+
+            // bootstrap modal 插件
             this.$el.modal();
         },
 
@@ -113,9 +116,11 @@ define(function (require, exports, module) {
 
             var photos = this.photoCollection.toJSON();
 
+            var currDate = moment().dayOfYear();
+
             _.each(photos, function(photo) {
 
-                photo.created = moment(photo.created).format('YYYY-MM-DD HH:mm:ss');
+                photo.created = timeFormat(currDate, photo.created);
             });
 
             var content = this.template({
@@ -145,13 +150,14 @@ define(function (require, exports, module) {
                     self.render();
                 }
             });
+        },
+
+        // 注销用户视图
+        dispose: function() {
+
+            this.$el.remove();
         }
     });
-
-    //注销用户视图
-    UserPhotosView.prototype.dispose = function() {
-        this.$el.remove();
-    };
 
     module.exports = UserPhotosView;
 });
