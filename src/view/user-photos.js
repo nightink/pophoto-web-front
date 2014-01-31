@@ -5,10 +5,11 @@
 define(function (require, exports, module) {
 
     var $ = require('jquery');
-    var Backbone = require('backbone');
-    var handlebars = require('handlebars');
     var _ = require('underscore');
     var moment = require('moment');
+    var backbone = require('backbone');
+    var handlebars = require('handlebars');
+
     var observer = require('observer');
     var PhotoCollection = require('../model/photo-collection');
     var PhotoModel = require('../model/photo-model');
@@ -17,7 +18,7 @@ define(function (require, exports, module) {
 
     var console = window.console || function() {};
 
-    var PhotoUpdateView = Backbone.View.extend({
+    var PhotoUpdateView = backbone.View.extend({
         el: 'body',
 
         events: {
@@ -80,7 +81,7 @@ define(function (require, exports, module) {
         }
     });
 
-    var UserPhotosView = Backbone.View.extend({
+    var UserPhotosView = backbone.View.extend({
         el: 'body',
 
         template: handlebars.compile(require('../tpl/user-photos.tpl')),
