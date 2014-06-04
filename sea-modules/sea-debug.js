@@ -536,7 +536,9 @@ Module.prototype.load = function() {
     if(data.debug) {
 
       // by Nightink child depend
-      m.parent = mod;
+      isArray(m.parents) ?
+        m.parents.push(mod) :
+        (m.parents = [mod])
     }
 
     if (m.status < STATUS.LOADED) {
