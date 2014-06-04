@@ -3,6 +3,7 @@
  */
 
 define(function (require, exports, modules) {
+
   var $ = require('jquery');
   var _ = require('underscore');
   require('uiwidget')($);
