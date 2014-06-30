@@ -20,7 +20,8 @@ seajs.use([
 
     el: '#photo-list'
   });
-  var topView = new TopView;
+
+  var topView = new TopView();
 
   var $lis = $('#nav-con-list li');
   $lis.on('click', function(e) {
